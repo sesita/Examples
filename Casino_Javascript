@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Casino - Javascript</title>
+</head>
+<body>
+</body>
+<script>
+const casino = {
+	maxNumber: 36,
+	minNumber: 0,
+	colors: ["red", "black"],
+	onNumber: function(amount, number){
+		const coef = 36;
+		if (number>=this.minNumber&&number<this.maxNumber) {
+			const randNumb = Math.round(Math.random()*this.maxNumber);
+			if (number==randNumb) alert(`Winning number is: ${randNumb}. Your bet: ${number}. You won ${amount*coef}$!`);
+			else alert(`Winning number is: ${randNumb}. Your bet: ${number}. You loose!`);
+		}
+		else alert("Invalid number entered");
+	},
+	onColor: function(amount, color){
+		const coef = 2;
+		const randIndex = Math.floor(Math.random()*2);
+		if (this.colors[randIndex]===color) 
+			alert(`Winning color is ${this.colors[randIndex]}. Your choice: ${color}. You won: ${coef*amount}`);
+		else 
+			alert(`Winning color is ${this.colors[randIndex]}. Your choice: ${color}. You loose...`);
+	},
+	bet: function(amount){
+		if (amount === undefined) alert("No bet amount entered");
+		else {
+			const betType = prompt("Enter type of bet");
+			if (betType==="number") {
+				const bet = prompt("Enter number to bet on");
+				this.onNumber(amount, bet);
+			}
+			else if (betType==="color"){
+				const bet = prompt("black or red");
+				this.onColor(amount, bet);
+			}
+			else alert("Invalid bet type");
+		}
+	}
+}
+
+const money_amount = prompt("How much you want to bet");
+casino.bet(money_amount);
+</script>
+</html>
