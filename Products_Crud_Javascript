@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products Crud - Javascript</title>
+</head>
+<body>
+</body>
+<script>
+    const products = {
+        product1: { title: ["Product 1"], amount: 1, price: 15, description: ["Product 1, Test"]},
+        product2: { title: ["Product 2"], amount: 1, price: 15, description: ["Product 1, Test"]},
+        product3: { title: ["Product 3"], amount: 1, price: 15, description: ["Product 1, Test"]},
+        product4: { title: ["Product 4"], amount: 1, price: 15, description: ["Product 1, Test"]},
+        
+        checkProduct: function(product){
+		if (!Object.keys(this).includes(product)) return false;
+		else return true;
+	    },
+
+        RemoveProduct: function(product){
+            const productExists = this.checkProduct(product);
+		    if (productExists) delete this[product];
+        },
+        countTotal: function(){
+		let sum = 0;
+		for (let key in this) {
+			if (typeof this[key]==="object") {
+				const subtotal = this[key].amount*this[key].price;
+				sum = sum + subtotal;
+			}
+		}
+		return sum.toFixed(2);
+	 }
+    }
+    const totalProductsPrice = products.countTotal();
+    console.log(totalProductsPrice);
+</script>
+</html>
